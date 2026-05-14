@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed bug demo</title>
+    <style>
+        body,
+        html,
+        :root {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            position: absolute;
+        }
+
+        iframe {
+            position: absolute;
+            width: calc(50vmin) !important;
+            height: calc(50vmin / (16/9)) !important;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <button style="position:relative; z-index: 100;" onClick="window.dispatchEvent(new CustomEvent('movePlayer'))">move player</button>
+
+    <script>
+        const channel = prompt("Enter the username of a live twitch channel:");
+        const iframe = document.createElement('iframe');
+        document.body.appendChild(iframe);
+        iframe.setAttribute('src', `https://player.twitch.tv/?autoplay=true&muted=true&channel=${channel}&parent=${location.hostname || 'localhost'}`);
+
+        function positionIframeCenter() {
+            const box = iframe.getBoundingClientRect();
+            iframe.style.left = (window.innerWidth / 2 - box.width / 2) + 'px';
+            iframe.style.top = (window.innerHeight / 2 - box.height / 2) + 'px';
+        }
+        positionIframeCenter();
+
+        window.addEventListener('resize', () => {
+            positionIframeCenter();
+        })
+
+        window.addEventListener('movePlayer', () => {
+            const box = iframe.getBoundingClientRect();
+            iframe.style.left = (Math.floor(Math.random() * window.innerWidth - box.width)) + 'px';
+            iframe.style.top = (Math.floor(Math.random() * window.innerHeight - box.height)) + 'px';
+        })
+    </script>
+</body>
+
+</html>
