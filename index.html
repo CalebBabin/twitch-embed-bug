@@ -63,8 +63,9 @@
             if (!moving) return;
             window.requestAnimationFrame(draw);
 
-            const rotation1 = Date.now() / 5000;
-            iframe.style.transform = 'translateX(' + (Math.sin(rotation1) * 30) + 'vmin) translateY(' + (Math.cos(rotation1) * 30) + 'vmin)';
+            const rotation1 = Date.now() / 2000;
+            const rotation2 = Date.now() / 4423;
+            iframe.style.transform = 'translateX(' + (Math.sin(rotation1) * 30 * (Math.sin(rotation2) + 2)) + 'vmin) translateY(' + (Math.cos(rotation1) * 30) + 'vmin)';
         }
 
         window.addEventListener('movePlayer', () => {
@@ -76,7 +77,8 @@
 
 
     <div style="position:absolute; z-index: 100; bottom:1rem; left:50%;">
-        <button style="margin-left: -50%;" onClick="window.dispatchEvent(new CustomEvent('movePlayer'))">move player</button>
+        <button style="margin-left: -50%;" onClick="window.dispatchEvent(new CustomEvent('movePlayer'))">move
+            player</button>
     </div>
 
     <div class="block" style="background: #ff0000; margin-left: 35vmin;"></div>
