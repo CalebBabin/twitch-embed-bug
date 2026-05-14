@@ -48,6 +48,7 @@
 
         function positionIframeCenter() {
             const box = iframe.getBoundingClientRect();
+            iframe.style.transform = '';
             iframe.style.left = (window.innerWidth / 2 - box.width / 2) + 'px';
             iframe.style.top = (window.innerHeight / 2 - box.height / 2) + 'px';
         }
@@ -65,13 +66,17 @@
 
             const rotation1 = Date.now() / 2000;
             const rotation2 = Date.now() / 4423;
-            iframe.style.transform = 'translateX(' + (Math.sin(rotation1) * 30 * (Math.sin(rotation2) + 2)) + 'vmin) translateY(' + (Math.cos(rotation1) * 30) + 'vmin)';
+            const rotation3 = Date.now() / 3243;
+            const rotation4 = Date.now() / 8249;
+
+            const transform = 'translateX(' + (Math.sin(rotation1) * 30 * (Math.sin(rotation2) + 2)) + 'vmin) translateY(' + (Math.cos(rotation1) * 30) + 'vmin) scale('+(Math.sin(rotation3) * 0.5 + 1)+') rotate('+(Math.sin(rotation4) * 360)+'deg)';
+            iframe.style.transform = transform;
         }
 
         window.addEventListener('movePlayer', () => {
+            positionIframeCenter();
             moving = !moving;
             if (moving) draw();
-            console.log(moving);
         })
     </script>
 
