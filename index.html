@@ -24,11 +24,21 @@
             height: calc(50vmin / (16/9)) !important;
             background-color: black;
         }
+
+        .block {
+            position: absolute;
+            z-index: 90;
+            top: 50%;
+            left: 50%;
+            margin: -5vmin;
+            width: 10vmin;
+            height: 10vmin;
+            background: black;
+        }
     </style>
 </head>
 
 <body>
-    <button style="position:relative; z-index: 100;" onClick="window.dispatchEvent(new CustomEvent('movePlayer'))">move player</button>
 
     <script>
         const channel = prompt("Enter the username of a live twitch channel:");
@@ -47,12 +57,30 @@
             positionIframeCenter();
         })
 
+        let moving = false;
+
+        function draw() {
+            if (!moving) return;
+            window.requestAnimationFrame(draw);
+
+            const rotation1 = Date.now() / 5000;
+            iframe.style.transform = 'translateX(' + (Math.sin(rotation1) * 30) + 'vmin) translateY(' + (Math.cos(rotation1) * 30) + 'vmin)';
+        }
+
         window.addEventListener('movePlayer', () => {
-            const box = iframe.getBoundingClientRect();
-            iframe.style.left = (Math.floor(Math.random() * (window.innerWidth - box.width))) + 'px';
-            iframe.style.top = (Math.floor(Math.random() * (window.innerHeight - box.height))) + 'px';
+            moving = !moving;
+            if (moving) draw();
+            console.log(moving);
         })
     </script>
+
+
+    <div style="position:absolute; z-index: 100; bottom:1rem; left:50%;">
+        <button style="margin-left: -50%;" onClick="window.dispatchEvent(new CustomEvent('movePlayer'))">move player</button>
+    </div>
+
+    <div class="block" style="background: #ff0000; margin-left: 35vmin;"></div>
+    <div class="block" style="background: #0000ff; margin-left: -40vmin;"></div>
 </body>
 
 </html>
