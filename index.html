@@ -46,7 +46,7 @@
         const channel = prompt("Enter the username of a live twitch channel:");
         const iframe = document.createElement('iframe');
         document.body.appendChild(iframe);
-        iframe.setAttribute('src', `https://player.twitch.tv/?autoplay=true&muted=true&channel=${channel}&parent=${location.hostname || 'localhost'}`);
+        iframe.setAttribute('src', `https://player.twitch.tv/?autoplay=false&muted=false&channel=${channel}&parent=${location.hostname || 'localhost'}`);
 
         function positionIframeCenter(die = false) {
             const box = iframe.getBoundingClientRect();
