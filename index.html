@@ -73,7 +73,7 @@
             const rotation3 = Date.now() / 3243;
             const rotation4 = Date.now() / 8249;
 
-            const transform = 'translateX(' + (Math.sin(rotation1) * 30 * (Math.sin(rotation2) + 2)) + 'vmin) translateY(' + (Math.cos(rotation1) * 30) + 'vmin) scale('+(Math.sin(rotation3) * 0.5 + 1.5)+') rotate('+(Math.sin(rotation4) * 360)+'deg)';
+            const transform = 'translateX(' + (Math.sin(rotation1) * 30 * (Math.sin(rotation2) + 2)) + 'vmin) translateY(' + (Math.cos(rotation1) * 30) + 'vmin)'; //  scale('+(Math.sin(rotation3) * 0.5 + 1.5)+') rotate('+(Math.sin(rotation4) * 360)+'deg)
             iframe.style.transform = transform;
         }
 
