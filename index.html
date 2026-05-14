@@ -49,8 +49,8 @@
 
         window.addEventListener('movePlayer', () => {
             const box = iframe.getBoundingClientRect();
-            iframe.style.left = (Math.floor(Math.random() * window.innerWidth - box.width)) + 'px';
-            iframe.style.top = (Math.floor(Math.random() * window.innerHeight - box.height)) + 'px';
+            iframe.style.left = (Math.floor(Math.random() * (window.innerWidth - box.width))) + 'px';
+            iframe.style.top = (Math.floor(Math.random() * (window.innerHeight - box.height))) + 'px';
         })
     </script>
 </body>
